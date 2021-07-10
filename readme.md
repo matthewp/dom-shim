@@ -1,6 +1,6 @@
 # dom-shim
 
-Shim the global environment with DOM globals. Useful for loading web component code.
+Shim the global environment with DOM globals. Useful for loading web component code. Powered by [linkedom](https://github.com/WebReflection/linkedom)
 
 ## Usage
 
