@@ -14,6 +14,6 @@ jobs:
       uses: matthewp/cdn-spooky-deploy-action@v2
       with:
         key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+        access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         pkg: 'dom-shim'
         source: 'lib'
