@@ -21,7 +21,7 @@ import 'https://cdn.spooky.click/dom-shim/1.0.0/mod.js?global';
 You can use the `unshim` export to remove the globals if you only want them available temporarily.
 
 ```js
-import { unshim } 'https://cdn.spooky.click/dom-shim/1.0.0/mod.js?global';
+import { unshim } from 'https://cdn.spooky.click/dom-shim/1.0.0/mod.js?global';
 import './some-element.js';
 
 // We only needed the shim to load some-element.js, now remove them.
