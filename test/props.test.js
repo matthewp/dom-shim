@@ -1,4 +1,4 @@
-import { unshim, defaultGlobals } from '../lib/mod.js?global&props=HTMLDivElement,HTMLParagraphElement';
+import { unshim, defaultGlobals } from '../lib/mod.js?global&props=window,HTMLDivElement,HTMLParagraphElement';
 import { assert, assertEquals } from './deps.js';
 
 Deno.test('Adds the props to the self', () => {
