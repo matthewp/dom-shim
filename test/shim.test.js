@@ -1,4 +1,4 @@
-import { domShimSymbol } from '../lib/mod.js?props=document,Text';
+import { domShimSymbol } from '../lib/mod.js?props=document,HTMLElement,Text';
 import { assertEquals } from './deps.js';
 
 Deno.test('Text can be extended from the defaultView', () => {
@@ -47,4 +47,10 @@ Deno.test('Extended Text can set its data', () => {
   }
   let mark = new Mark();
   assertEquals(mark.data, 'works');
+});
+
+Deno.test('HTMLElement.observedAttributes is undefined', () => {
+  const { HTMLElement } = self[domShimSymbol];
+  console.log(HTMLElement.observedAttributes)
+  assertEquals(HTMLElement.observedAttributes, undefined);
 });
