@@ -1,4 +1,4 @@
-import { domShimSymbol } from '../lib/mod.js?props=document,HTMLElement,Text';
+import { domShimSymbol } from '../lib/mod.js?props=document,HTMLElement,requestAnimationFrame,Text';
 import { assertEquals } from './deps.js';
 
 Deno.test('Text can be extended from the defaultView', () => {
@@ -51,6 +51,20 @@ Deno.test('Extended Text can set its data', () => {
 
 Deno.test('HTMLElement.observedAttributes is undefined', () => {
   const { HTMLElement } = self[domShimSymbol];
-  console.log(HTMLElement.observedAttributes)
   assertEquals(HTMLElement.observedAttributes, undefined);
+});
+
+Deno.test('requestAnimationFrame can be used', async () => {
+  let r;
+  let p = new Promise(rr => { r = rr; });
+
+  const { requestAnimationFrame } = self[domShimSymbol];
+  let worked = false;
+  requestAnimationFrame(() => {
+    worked = true;
+    r();
+  });
+
+  await p;
+  assertEquals(worked, true);
 });
