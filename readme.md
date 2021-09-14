@@ -34,6 +34,21 @@ You can specify *which* DOM globals are added by adding a comma-separated `props
 import 'https://cdn.spooky.click/dom-shim/1.2.0/mod.js?global&props=HTMLDivElement,HTMLParagraphElement,customElements';
 ```
 
+### Side-effect free entry point
+
+If your runtime does not support query params (most bundlers) or you do not want the side-effect to take place immediate, you can use the other entry point `shim.js` like so:
+
+```js
+import setupShim from 'https://cdn.spooky.click/dom-shim/1.2.0/shim.js';
+
+let { shim, unshim } = setupShim();
+
+// If you want the globals to be applied:
+shim();
+```
+
+Calling `setupShim` will create the shimmed environment and set it on the `Symbol.for('dom-shim.defaultView')` property. Calling the returned `shim()` will apply the globals onto the environments `globalThis`.
+
 ## License
 
 BSD-2-Clause
