@@ -39,15 +39,21 @@ import 'https://cdn.spooky.click/dom-shim/1.2.0/mod.js?global&props=HTMLDivEleme
 If your runtime does not support query params (most bundlers) or you do not want the side-effect to take place immediate, you can use the other entry point `shim.js` like so:
 
 ```js
-import setupShim from 'https://cdn.spooky.click/dom-shim/1.2.0/shim.js';
+import { Shim } from 'https://cdn.spooky.click/dom-shim/1.2.0/shim.js';
 
-let { shim, unshim } = setupShim();
+let s = new Shim(['document']);
+console.log(s.values); // { document }
 
-// If you want the globals to be applied:
-shim();
+// To apply the shim symbol to the global environment
+s.apply();
+
+// If you want the globals to be set on the global environment
+s.shim();
 ```
 
-Calling `setupShim` will create the shimmed environment and set it on the `Symbol.for('dom-shim.defaultView')` property. Calling the returned `shim()` will apply the globals onto the environments `globalThis`.
+Creating a new `Shim` instance will create the shimmed environment. Calling `s.apply()` will set the environment on the `Symbol.for('dom-shim.defaultView')` property. Calling `s.shim()` will apply the globals onto the environments `globalThis`.
+
+> Note: if you call `.shim()` then you do not need to also call `.apply()`.
 
 ## License
 
